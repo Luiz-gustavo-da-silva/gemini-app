@@ -1,0 +1,32 @@
+<div class="flex flex-col h-screen items-center bg-[#212121]">
+  <div class="flex flex-col h-full max-w-3xl w-full rounded-lg">
+    <main
+      class="flex-1 flex flex-col justify-center items-center p-4 md:p-6 text-white"
+    >
+      <div
+        *ngIf="generatedContent.length > 0; else noContent"
+        class="text-justify"
+      >
+        <div *ngFor="let resposta of generatedContent" class="mb-2">
+          {{ resposta }}
+        </div>
+      </div>
+
+      <ng-template #noContent>
+        <p class="text-center text-gray-500">Sem conteúdo gerado!</p>
+      </ng-template>
+    </main>
+
+    <div class="bg-[#2f2f2f] flex items-center p-4 mb-3 rounded-lg">
+      <textarea
+        placeholder="Escreva uma mensagem para o Gemini"
+        class="flex-1 bg-transparent text-white placeholder-white focus:outline-none px-2 resize-none"
+        rows="1"
+        [(ngModel)]="prompt"
+      ></textarea>
+      <button class="text-white ml-4" (click)="generateContent()">
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+</div>
